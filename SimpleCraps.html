@@ -1,0 +1,49 @@
+<!doctype html>                       
+<html lang="en">
+<head>
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+			
+		<script lang="javascript">
+			var score = [];
+			var point;
+			var secondRole = [];
+            $().ready(function(){
+				$("#roll").click(function(){
+					var di1 = Math.floor((Math.random() * 6) + 1);  //the first dice
+					var di2 = Math.floor((Math.random() * 6) + 1);  //the second dice
+					score.push(di1 + di2);                          // total the role of dice and put it in array named score
+					$("#lbl").text(score);                          //show the score in the label
+					if(score == 7 || score == 11){                   //designates winner on first role
+						$("#lbl").text(score + "Won")                 // print to label score array plus "Won" string
+					}else if(score == 2 || score == 3 || score ==12){  //designates loser 
+						$("#lbl").text(score + "Lost")                 // print to label score array plus "Lost" string
+					}else if(score == 4 || score == 5 || score == 6 || score == 8 || score == 9 || score == 10){
+						$("#lbl").text(score + "This is your point. Please roll again");
+						score = point;                                     //sets the score as the point
+							$("#roll").click(function(){                //initiates second role
+					        var di3 = Math.floor((Math.random() * 6) + 1);  //the third dice
+							var di4 = Math.floor((Math.random() * 6) + 1);  //the fourth dice
+							secondRole.push(di3 + di4);                     //adds the dice up 
+							  if(point == secondRole ){
+								$("#lbl").text(score + "Won") 
+							  }
+							})
+					
+					}
+				})
+			})
+				</script>
+</head>
+<body >
+    <h1>Welcome to online Simple Craps</h1>
+    <p>Roll the dice to play</p>
+<p></p>
+    <button id="roll" >Play Simple Craps</button>
+<p></p>
+
+<p></p>
+<label id="lbl" type="text"></label>
+</body>
+</html>
