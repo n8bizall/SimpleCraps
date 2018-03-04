@@ -7,15 +7,104 @@
 			
 		<script lang="javascript">
 			var score = [];
-			var point;
-			var secondRole = [];
+			var pointer;                     //var to set the point after first roll if not a win or loss
+			var frstRoll = [];
+			var isFrstRoll = true;
+			var subRoll = [];
+			var secondRoll = [];
+			var winCount = [];
+			var lossCount = [];    //collection of losses array for var in label statement
+			var wonLossToggle;    //boolean var  for statement in label
             $().ready(function(){
 				$("#roll").click(function(){
 					var di1 = Math.floor((Math.random() * 6) + 1);  //the first dice
 					var di2 = Math.floor((Math.random() * 6) + 1);  //the second dice
-					score.push(di1 + di2);                          // total the role of dice and put it in array named score
-					$("#lbl").text(score);                          //show the score in the label
-					if(score == 7 || score == 11){                   //designates winner on first role
+					
+					if(isFrstRoll == true){
+					frstRoll.push(di1 + di2);                          // total the role of dice and put it in array named score
+					$("#lbl").text(frstRoll);                          //show the score in the label
+					
+						switch (frstRoll){
+							case 7:
+							case 11:
+								 win();  //calls the win function
+							  break;
+							case 2:
+							case 3: 
+							case 12:
+								lose();    //calls the loss function
+							  break;
+							case 4:
+							case 5: 
+							case 6: 
+							case 8: 
+							case 9: 
+							case 10: 
+							  point();		//calls the point function					  
+							   break;		   		
+						}
+						
+					}
+					else{
+					secondRoll.push(di1 + di2);    //I should probalably rename this var to subsuquentRoll or nextRoll
+					$("#lbl").text(secondRoll);
+						switch(secondRoll){
+							case 7:
+								lose();
+								break;
+							case (point): 
+								win();
+								break;
+							case 11:
+							case 10: 
+							case 9: 
+							case 8: 
+							case 6: 
+							case 5: 
+							case 4: 
+							case 3: 
+							case 2: 
+							 $("$lbl").text(secondRoll + " You must hit your point to win. Roll again.");
+							 break;
+						   }
+							
+
+					}
+					
+					
+					
+				})
+              function win(){
+				   winCount++;                            //increments the winCount var
+				   wonLossToggle == true;                 //sets the var in the lbl text below
+				   isFrstRoll == true;    // resets  the boolean for variable isFrstRoll
+				   $("#lbl").text(frstRoll + "," + wonLossToggle + ";" + winCount + " " + "Wins" + "," + lossCount + " " + "Loses" );
+			                                      // I want to call these 3 function sin the switch statements to get reults to label
+			   }
+			   function lose(){
+				   lossCount++;
+				   wonLossToggle == false;
+				   isFrstRoll == false;
+				   $("#lbl").text(frstRoll + "," + wonLossToggle + ";" + winCount + " " + "Wins" + "," + lossCount + " " + "Loses" );
+			   }
+			   function point(){
+				   isFrstRoll == false;
+					frstRoll == pointer;
+					$("$lbl").text(frstRoll + " Is your point to match. Roll again.")
+
+			   }
+			})
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					/*if(score == 7 || score == 11){                   //designates winner on first role
 						$("#lbl").text(score + "Won")                 // print to label score array plus "Won" string
 					}else if(score == 2 || score == 3 || score ==12){  //designates loser 
 						$("#lbl").text(score + "Lost")                 // print to label score array plus "Lost" string
@@ -32,8 +121,8 @@
 							})
 					
 					}
-				})
-			})
+				})*/
+			
 				</script>
 </head>
 <body >
