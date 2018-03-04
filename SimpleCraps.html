@@ -6,13 +6,12 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 			
 		<script lang="javascript">
-			var score = [];
+			
 			var pointer;                     //var to set the point after first roll if not a win or loss
-			var frstRoll = [];
-			var isFrstRoll = true;
-			var subRoll = [];
-			var secondRoll = [];
-			var winCount = [];
+			var frstRoll = [];               // array to hold to first roll
+			var isFrstRoll = true;           //boolean var to determain if users first roll or not
+			var secondRoll = [];             // array var to hold all subsequent rolls 
+			var winCount = [];               // counts the wins
 			var lossCount = [];    //collection of losses array for var in label statement
 			var wonLossToggle;    //boolean var  for statement in label
             $().ready(function(){
@@ -94,39 +93,11 @@
 
 			   }
 			})
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					/*if(score == 7 || score == 11){                   //designates winner on first role
-						$("#lbl").text(score + "Won")                 // print to label score array plus "Won" string
-					}else if(score == 2 || score == 3 || score ==12){  //designates loser 
-						$("#lbl").text(score + "Lost")                 // print to label score array plus "Lost" string
-					}else if(score == 4 || score == 5 || score == 6 || score == 8 || score == 9 || score == 10){
-						$("#lbl").text(score + "This is your point. Please roll again");
-						score = point;                                     //sets the score as the point
-							$("#roll").click(function(){                //initiates second role
-					        var di3 = Math.floor((Math.random() * 6) + 1);  //the third dice
-							var di4 = Math.floor((Math.random() * 6) + 1);  //the fourth dice
-							secondRole.push(di3 + di4);                     //adds the dice up 
-							  if(point == secondRole ){
-								$("#lbl").text(score + "Won") 
-							  }
-							})
-					
-					}
-				})*/
-			
+								
 				</script>
 </head>
 <body >
-    <h1>Welcome to online Simple Craps</h1>
+    <h1 style="color: blue">Welcome to online Simple Craps</h1>
     <p>Roll the dice to play</p>
 <p></p>
     <button id="roll" >Play Simple Craps</button>
