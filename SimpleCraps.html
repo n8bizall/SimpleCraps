@@ -1,6 +1,6 @@
 <!doctype html>                       
 <html lang="en">
-<head>
+<head style="background:image">
 	<title></title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -12,8 +12,8 @@
 			var isFrstRoll = true;           //boolean var to determain if users first roll or not
 			var secondRoll = [];             // array var to hold all subsequent rolls 
 			var winCount = [];               // counts the wins
-			var lossCount = [];    //collection of losses array for var in label statement
-			var wonLossToggle;    //boolean var  for statement in label
+			var lossCount = [];              //collection of losses array for var in label statement
+			var wonLossToggle;               //boolean var  for statement in label
             $().ready(function(){
 				$("#roll").click(function(){
 					var di1 = Math.floor((Math.random() * 6) + 1);  //the first dice
@@ -23,7 +23,7 @@
 					frstRoll.push(di1 + di2);                          // total the role of dice and put it in array named score
 					$("#lbl").text(frstRoll);                          //show the score in the label
 					
-						switch (frstRoll){
+						switch (parseInt(frstRoll)){
 							case 7:
 							case 11:
 								 win();  //calls the win function
@@ -44,10 +44,10 @@
 						}
 						
 					}
-					else{
+					else {
 					secondRoll.push(di1 + di2);    //I should probalably rename this var to subsuquentRoll or nextRoll
 					$("#lbl").text(secondRoll);
-						switch(secondRoll){
+						switch(parseInt(secondRoll)){
 							case 7:
 								lose();
 								break;
@@ -63,7 +63,7 @@
 							case 4: 
 							case 3: 
 							case 2: 
-							 $("$lbl").text(secondRoll + " You must hit your point to win. Roll again.");
+							 $("#lbl").text(secondRoll + " You must hit your point to win. Roll again.");
 							 break;
 						   }
 							
@@ -74,22 +74,30 @@
 					
 				})
               function win(){
-				   winCount++;                            //increments the winCount var
-				   wonLossToggle == true;                 //sets the var in the lbl text below
-				   isFrstRoll == true;    // resets  the boolean for variable isFrstRoll
+				   winCount++;                              //increments the winCount var
+				   wonLossToggle = "Win";                     //sets the var in the lbl text below
+				   isFrstRoll == true;                      // resets  the boolean for variable isFrstRoll
 				   $("#lbl").text(frstRoll + "," + wonLossToggle + ";" + winCount + " " + "Wins" + "," + lossCount + " " + "Loses" );
-			                                      // I want to call these 3 function sin the switch statements to get reults to label
+			                                               // I want to call these 3 function sin the switch statements to get reults to label
 			   }
 			   function lose(){
 				   lossCount++;
-				   wonLossToggle == false;
+				   wonLossToggle = "Lose";
 				   isFrstRoll == false;
 				   $("#lbl").text(frstRoll + "," + wonLossToggle + ";" + winCount + " " + "Wins" + "," + lossCount + " " + "Loses" );
 			   }
 			   function point(){
-				   isFrstRoll == false;
-					frstRoll == pointer;
-					$("$lbl").text(frstRoll + " Is your point to match. Roll again.")
+				   isFrstRoll = false;
+				   (frstRoll || secondRoll == pointer);                   //TODO not sure if I need this here maybe just frstRoll == pointer
+				   $("#lbl").text(frstRoll + " Is your point to match. Roll again.")
+				   reset();                                               //calls reset function to reset the the rollcount only
+					
+
+			   }function reset(){
+				   isFrstRoll = false;
+				   frstRoll == pointer;
+
+					// TODO add a function that resets the point roll
 
 			   }
 			})
