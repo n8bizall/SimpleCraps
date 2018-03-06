@@ -46,7 +46,10 @@
 							case 8: 
 							case 9: 
 							case 10: 
-							  point();		//calls the point function					  
+							  if(frstRoll.length == 0){
+								  frstRoll == pointer;
+							  }
+							   point();		//calls the point function					  
 							   break;		   		
 						  }
 						
@@ -60,7 +63,7 @@
 							case 7:
 								lose();
 								break;
-							case (point): 
+							case pointer: 
 								win();
 								break;
 							case 11:
